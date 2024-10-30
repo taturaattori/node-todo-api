@@ -9,8 +9,11 @@ const handleRequest = (req, res) => {
   console.log(`Got a ${method} request on ${url}.`);
 
   //näytä tehtävät
-  if ("GET" === method && "/api/todo" === url) {
+  if (method === "GET" && url === "/api/todo") {
     controller.index(req, res);
+  } else if (method === "GET" && url.match(/\/api\/todo\/([0-9]+)/)) {
+    // /api/todo/id id on numero
+    controller.show(req, res);
   } else {
     responseJSON(res, 404, { message: "Route not found." });
   }
