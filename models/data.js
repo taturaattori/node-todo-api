@@ -1,0 +1,24 @@
+const todos = [
+  {
+    id: 1,
+    title: "Homework",
+    completed: false,
+  },
+  {
+    id: 2,
+    title: "Laundry",
+    completed: false,
+  },
+  {
+    id: 3,
+    title: "Shopping",
+    completed: false,
+  },
+  {
+    id: 4,
+    title: "Gym",
+    completed: false,
+  },
+];
+
+module.exports = todos;

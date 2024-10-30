@@ -1,3 +1,8 @@
+const responseJSON = require("./utils");
+const TaskController = require("./controllers/TaskController");
+
+let controller = new TaskController();
+
 const handleRequest = (req, res) => {
   const { url, method } = req;
 
@@ -5,10 +10,9 @@ const handleRequest = (req, res) => {
 
   //näytä tehtävät
   if ("GET" === method && "/api/todo" === url) {
-    res.writeHead(200, {
-      "Content-Type": "application/json",
-    });
-    res.end("{status:OK}");
+    controller.index(req, res);
+  } else {
+    responseJSON(res, 404, { message: "Route not found." });
   }
   //näytä yksi tehtävä
 
