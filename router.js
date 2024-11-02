@@ -11,19 +11,24 @@ const handleRequest = (req, res) => {
   //näytä tehtävät
   if (method === "GET" && url === "/api/todo") {
     controller.index(req, res);
-  } else if (method === "GET" && url.match(/\/api\/todo\/([0-9]+)/)) {
+  }
+  //näytä yksi tehtävä
+  else if (method === "GET" && url.match(/\/api\/todo\/([0-9]+)/)) {
     // /api/todo/id id on numero
     controller.show(req, res);
+  }
+  //muokkaa tehtävän tilaa
+  else if (method === "PATCH" && url.match(/\/api\/todo\/([0-9]+)/)) {
+    controller.update(req, res);
+  }
+  //poista tehtävä
+  else if (method === "DELETE" && url.match(/\/api\/todo\/([0-9]+)/)) {
+    controller.delete(req, res);
   } else {
     responseJSON(res, 404, { message: "Route not found." });
   }
-  //näytä yksi tehtävä
 
   //luo uusi tehtävä
-
-  //muokkaa tehtävää
-
-  //poista tehtävä
 };
 
 module.exports = handleRequest;
