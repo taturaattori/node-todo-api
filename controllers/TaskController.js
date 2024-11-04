@@ -5,7 +5,7 @@ const { getRequestData, responseJSON } = require("../utils");
 
 class TaskController {
   //näytä tehtävät - index
-  index(req, res) {
+  static index(req, res) {
     try {
       const data = task.all();
       responseJSON(res, 200, data);
@@ -15,7 +15,7 @@ class TaskController {
     }
   }
   //näytä yksi tehtävä - show
-  show(req, res) {
+  static show(req, res) {
     try {
       const id = req.url.split("/")[3];
       const data = task.find(id);
@@ -26,7 +26,7 @@ class TaskController {
     }
   }
   //luo uusi tehtävä - add
-  async add(req, res) {
+  static async add(req, res) {
     try {
       const data = await getRequestData(req);
       const taskObject = await JSON.parse(data);
@@ -38,7 +38,7 @@ class TaskController {
     }
   }
   //muokkaa tehtävää - update
-  update(req, res) {
+  static update(req, res) {
     try {
       const id = req.url.split("/")[3];
       const data = task.complete(id);
@@ -49,7 +49,7 @@ class TaskController {
     }
   }
   //poista tehtävä - delete
-  delete(req, res) {
+  static delete(req, res) {
     try {
       const id = req.url.split("/")[3];
       const data = task.delete(id);

@@ -17,22 +17,14 @@ class Task {
   }
   // muuttaa tehtävän tilaa
   complete(id) {
-    let task = data.find((task) => task.id === parseInt(id));
-
-    if (!task) {
-      throw new Error(`Task with id ${id} was not found.`);
-    }
+    let task = this.find(id);
 
     task.completed = true;
     return task;
   }
   // poistaa tehtävän
   delete(id) {
-    let task = data.find((task) => task.id === parseInt(id));
-
-    if (!task) {
-      throw new Error(`Task with id ${id} was not found.`);
-    }
+    this.find(id);
 
     data = data.filter((item) => {
       return item.id !== task.id;
