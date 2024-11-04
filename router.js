@@ -24,11 +24,13 @@ const handleRequest = (req, res) => {
   //poista tehtävä
   else if (method === "DELETE" && url.match(/\/api\/todo\/([0-9]+)/)) {
     controller.delete(req, res);
+  }
+  //luo uusi tehtävä
+  else if (method === "POST" && url === "/api/todo") {
+    controller.add(req, res);
   } else {
     responseJSON(res, 404, { message: "Route not found." });
   }
-
-  //luo uusi tehtävä
 };
 
 module.exports = handleRequest;

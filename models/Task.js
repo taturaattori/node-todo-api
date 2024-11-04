@@ -40,6 +40,26 @@ class Task {
 
     return `Succesfully removed task with id ${id}`;
   }
+  // luo uuden tehtävän
+  add(task) {
+    let newTask = {
+      id: this.nextId(),
+      completed: false,
+      ...task,
+    };
+
+    data.push(newTask);
+  }
+
+  nextId() {
+    let max = 1;
+    data.forEach((task) => {
+      if (task.id > max) {
+        max = task.id;
+      }
+    });
+    return ++max;
+  }
 }
 
 module.exports = Task;

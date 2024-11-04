@@ -1,7 +1,7 @@
 const Task = require("../models/Task");
 let task = new Task();
 
-const responseJSON = require("../utils");
+const { getRequestData, responseJSON } = require("../utils");
 
 class TaskController {
   //näytä tehtävät - index
@@ -26,6 +26,17 @@ class TaskController {
     }
   }
   //luo uusi tehtävä - add
+  async add(req, res) {
+    try {
+      const data = await getRequestData(req);
+      const taskObject = await JSON.parse(data);
+      const newTask = task.add(taskObject);
+      responseJSON(res, 200, newTask);
+    } catch (e) {
+      console.log(e);
+      responseJSON(res, 404, { message: e.message });
+    }
+  }
   //muokkaa tehtävää - update
   update(req, res) {
     try {
