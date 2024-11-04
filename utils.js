@@ -19,6 +19,9 @@ const getRequestData = (req) => {
 const responseJSON = (res, status, payload) => {
   res.writeHead(status, {
     "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Headers": "Origin, Content-Type, Accept",
+    "Acces-Control-Allow-Methods": "GET,POST,PATCH,DELETE",
   });
   res.end(JSON.stringify(payload));
 };
